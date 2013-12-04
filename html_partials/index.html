@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap Hogan Partials</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap -->
+    <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="../../assets/js/html5shiv.js"></script>
+      <script src="../../assets/js/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <h1>Hello, world!</h1>
+
+    
+    <script src="js/jquery-2.0.3.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/hogan.js/2.0.0/hogan.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/require.js/2.1.8/require.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.0.0/js/bootstrap.min.js"></script>
+    <script>
+      var data = {
+        // this can be a variable included in the template page
+        text: 'Hello World'
+      };
+
+      require(['js/text!templates/test.hogan'], function(testHoganText) {
+        // testHoganText contains the text of your template
+        var compiled = Hogan.compile(testHoganText);
+        var renderedTemplate = compiled.render(data);
+
+        var box = document.createElement('div');
+        box.innerHTML = renderedTemplate;
+        document.body.insertBefore(box,document.body.childNodes[0]);
+      });
+</script>
+  </body>
+</html>
